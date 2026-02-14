@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>For Bubba \uc0\u10084 \u65039 </title>\
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>\
+    <style>\
+        body \{\
+            margin: 0;\
+            padding: 0;\
+            display: flex;\
+            flex-direction: column;\
+            align-items: center;\
+            justify-content: center;\
+            min-height: 100vh;\
+            background-color: #fff0f3;\
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
+            overflow-x: hidden;\
+            text-align: center;\
+        \}\
+\
+        #main-container \{\
+            max-width: 600px;\
+            padding: 20px;\
+        \}\
+\
+        .photo-gallery \{\
+            display: flex;\
+            gap: 10px;\
+            overflow-x: auto;\
+            padding: 20px;\
+            width: 100%;\
+            scrollbar-width: none;\
+        \}\
+\
+        .photo-gallery img \{\
+            width: 250px;\
+            height: 350px;\
+            object-fit: cover;\
+            border-radius: 15px;\
+            border: 5px solid white;\
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);\
+        \}\
+\
+        h1 \{\
+            color: #c9184a;\
+            font-size: 2.5rem;\
+            margin-bottom: 30px;\
+        \}\
+\
+        .btn-container \{\
+            position: relative;\
+            height: 100px;\
+            width: 100%;\
+            margin-top: 20px;\
+        \}\
+\
+        button \{\
+            padding: 15px 40px;\
+            font-size: 1.2rem;\
+            font-weight: bold;\
+            border-radius: 50px;\
+            border: none;\
+            cursor: pointer;\
+            transition: transform 0.2s;\
+        \}\
+\
+        #yes-btn \{\
+            background-color: #ff4d6d;\
+            color: white;\
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);\
+        \}\
+\
+        #no-btn \{\
+            background-color: #808080;\
+            color: white;\
+            position: absolute;\
+            left: 55%; /* Start next to Yes button */\
+        \}\
+\
+        #success-message \{\
+            display: none;\
+            animation: fadeIn 1s;\
+        \}\
+\
+        #success-message img \{\
+            width: 300px;\
+            border-radius: 20px;\
+        \}\
+\
+        @keyframes fadeIn \{\
+            from \{ opacity: 0; \}\
+            to \{ opacity: 1; \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+    <div id="main-container">\
+        <div id="ask-section">\
+            <h1>Will you be my Valentine, Bubba?</h1>\
+            \
+            <div class="photo-gallery">\
+                <img src="photo1.jpg" alt="Us">\
+                <img src="photo2.jpg" alt="Us">\
+                <img src="photo3.jpg" alt="Us">\
+                <img src="photo4.jpg" alt="Us">\
+                <img src="photo5.jpg" alt="Us">\
+            </div>\
+\
+            <div class="btn-container">\
+                <button id="yes-btn" onclick="celebrate()">YES!</button>\
+                <button id="no-btn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>\
+            </div>\
+        </div>\
+\
+        <div id="success-message">\
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIwdWswYndqNXB6bm80eXN6eHpsbmRxcXpxeHpxeHpxeHpxeHpxJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Confetti">\
+            <h1 style="margin-top: 20px;">Yay thank you bubba i love you! \uc0\u10084 \u65039 </h1>\
+        </div>\
+    </div>\
+\
+    <script>\
+        function moveNoButton() \{\
+            const btn = document.getElementById('no-btn');\
+            // Randomize position within the screen, keeping a 100px margin\
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 100);\
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 100);\
+            \
+            btn.style.position = 'fixed';\
+            btn.style.left = x + 'px';\
+            btn.style.top = y + 'px';\
+        \}\
+\
+        function celebrate() \{\
+            // Hide the question and buttons\
+            document.getElementById('ask-section').style.display = 'none';\
+            // Show success message\
+            document.getElementById('success-message').style.display = 'block';\
+            \
+            // Trigger Confetti!\
+            var duration = 5 * 1000;\
+            var end = Date.now() + duration;\
+\
+            (function frame() \{\
+              confetti(\{\
+                particleCount: 3,\
+                angle: 60,\
+                spread: 55,\
+                origin: \{ x: 0 \},\
+                colors: ['#ff4d6d', '#ffb3c1', '#c9184a']\
+              \});\
+              confetti(\{\
+                particleCount: 3,\
+                angle: 120,\
+                spread: 55,\
+                origin: \{ x: 1 \},\
+                colors: ['#ff4d6d', '#ffb3c1', '#c9184a']\
+              \});\
+\
+              if (Date.now() < end) \{\
+                requestAnimationFrame(frame);\
+              \}\
+            \}());\
+        \}\
+    </script>\
+</body>\
+</html>}
